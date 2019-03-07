@@ -39,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="Welcome! please, sign in to your account"
+            android:text="Welcome! Please, sign in to your account"
             android:visibility="invisible" />
 
         <EditText

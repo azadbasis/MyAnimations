@@ -3,11 +3,13 @@ package com.animations;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationSet;
 import android.view.animation.OvershootInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
         profilePic = findViewById(R.id.profile_pic);
         signIn = findViewById(R.id.sign_in);
 
-        username=(EditText)findViewById(R.id.username);
+        username = (EditText) findViewById(R.id.username);
         username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 
-                if(!hasFocus&&username.getText().toString().equals("anna")){
+                if (!hasFocus && username.getText().toString().equals("anna")) {
                     changeProfilePic();
                 }
             }
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
-                        ((ImageView)profilePic).setImageResource(R.drawable.photo1);
+                        ((ImageView) profilePic).setImageResource(R.drawable.photo1);
                         profilePic.animate()
                                 .rotationY(0)
                                 .setDuration(750)
@@ -76,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void showContainer() {
         container.animate().alpha(1f).setDuration(1000)
-        .setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                showOtherItem();
-            }
-        })
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        showOtherItem();
+                    }
+                })
         ;
     }
 
@@ -93,8 +95,13 @@ public class MainActivity extends AppCompatActivity {
 
         ObjectAnimator animWelcome = ObjectAnimator.ofFloat(welcome, View.X, startXWelcome, endXWelcome);
         animWelcome.setDuration(1500);
-        welcome.setVisibility(View.VISIBLE);
-        animWelcome.start();
+        animWelcome.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        super.onAnimationStart(animation);
+                        welcome.setVisibility(View.VISIBLE);
+                    }
+                });
 
         PropertyValuesHolder scaleXHolder =
                 PropertyValuesHolder.ofFloat(View.SCALE_X, 1f);
@@ -103,11 +110,16 @@ public class MainActivity extends AppCompatActivity {
         ObjectAnimator animProfile =
                 ObjectAnimator.ofPropertyValuesHolder(profilePic, scaleXHolder, scaleYHolder);
         animProfile.setDuration(1500);
-        animProfile.start();
 
         ObjectAnimator animSignIn =
                 (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.sign_in_animator);
         animSignIn.setTarget(signIn);
-        animSignIn.start();
+
+
+        AnimatorSet set = new AnimatorSet();
+        set.play(animWelcome).after(animProfile);
+        set.play(animWelcome).before(animSignIn);
+        set.start();
+
     }
 }

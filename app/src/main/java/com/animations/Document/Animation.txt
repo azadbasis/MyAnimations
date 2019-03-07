@@ -6,3 +6,5 @@
     Alpha property values range 0=====>1(Zero to One)
     Zero(O) means fully Transparent and
     One(1) means fully Opec.
+
+    AnimatorSet Class only use for Object Animator; It will not work view property animator.
