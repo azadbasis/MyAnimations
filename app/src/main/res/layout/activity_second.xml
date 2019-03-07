@@ -11,8 +11,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
         android:layout_margin="10dp"
+        android:background="#FFFFFF"
         android:padding="16dp">
 
 
@@ -20,21 +20,73 @@
             android:id="@+id/profile_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/photo1"
-            android:transitionName="profile_pic"/>
+            android:transitionName="profile_pic"
+            app:srcCompat="@drawable/photo1" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="17sp"
             android:layout_toRightOf="@id/profile_pic"
             android:text="Welcome Anna"
+            android:textSize="17sp"
             android:textStyle="bold"
-            android:transitionName="welcome"/>
+            android:transitionName="welcome" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@id/welcome"
+            android:layout_alignStart="@id/welcome"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:onClick="showAllScene"
+                android:text="All"
+                android:textAllCaps="false"
+                tools:ignore="OnClick" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:onClick="shoOfficeScene"
+                android:textAllCaps="false"
+                android:text="Office" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:onClick="showGymeScene"
+                android:text="Gyme"
+                android:textAllCaps="false"
+                tools:ignore="OnClick" />
+        </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/scenes_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/container"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <include layout="@layout/all_scene" />
+
+    </LinearLayout>
+
 </RelativeLayout>

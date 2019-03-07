@@ -8,3 +8,4 @@
     One(1) means fully Opec.
 
     AnimatorSet Class only use for Object Animator; It will not work view property animator.
+    Android Transition Framework to transition one scene to another.
