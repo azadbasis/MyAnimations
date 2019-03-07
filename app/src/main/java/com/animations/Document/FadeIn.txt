@@ -1,0 +1,8 @@
+
+
+
+
+   In Android you control Transparency; You must be used Views Alpha property.
+    Alpha property values range 0=====>1(Zero to One)
+    Zero(O) means fully Transparent and
+    One(1) means fully Opec.
