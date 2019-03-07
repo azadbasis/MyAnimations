@@ -29,6 +29,7 @@
             app:srcCompat="@drawable/empty"
             android:scaleX="0"
             android:scaleY="0"
+            android:transitionName="profile_pic"
             />
 
         <TextView
@@ -40,7 +41,8 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="Welcome! Please, sign in to your account"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:transitionName="welcome"/>
 
         <EditText
             android:id="@+id/username"
@@ -61,6 +63,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Sign in"
+            android:onClick="showSecondActivity"
             android:scaleX="0"/>
     </LinearLayout>
 </RelativeLayout>
