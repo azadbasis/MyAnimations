@@ -1,6 +1,7 @@
 package com.animations;
 
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     private View container;
     private View welcome;
+    private View profilePic;
     private boolean playAnimations = true;
 
     @Override
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         container = findViewById(R.id.container);
         welcome = findViewById(R.id.welcome);
+        profilePic = findViewById(R.id.profile_pic);
     }
 
 
@@ -45,5 +48,15 @@ public class MainActivity extends AppCompatActivity {
         animWelcome.setDuration(1500);
         welcome.setVisibility(View.VISIBLE);
         animWelcome.start();
+
+        PropertyValuesHolder scaleXHolder =
+                        PropertyValuesHolder.ofFloat(View.SCALE_X,1f);
+        PropertyValuesHolder scaleYHolder = PropertyValuesHolder.ofFloat(View.SCALE_Y,1f);
+
+        ObjectAnimator animProfile=
+                     ObjectAnimator.ofPropertyValuesHolder(profilePic,scaleXHolder,scaleYHolder);
+        animProfile.setDuration(1500);
+        animProfile.start();
+
     }
 }
